@@ -35,13 +35,30 @@ class Pantry
     cookbook.push(recipe)
   end
 
-  def check_stock(item)
-    stock.each do |quantity|
-      # require "pry"; binding.pry
-      return stock[item] if stock == item
-    end
-  end # check stock to see if we have that
+  def check_if_has_single_ingredient(ingredient, amount)
+    return true if stock[ingredient] >= amount
+    false
+  end
 
+  def check_each_ingredient(recipe)
+    can_make = true
+    recipe.ingredients.each do |ingredient, amount|
+      can_make = check_if_has_single_ingredient(ingredient, amount)
+    end
+    can_make
+  end
+
+  def recipes_can_make
+    cookbook.map do |recipe|
+      make_recipe = check_each_ingredient(recipe)
+      recipe if make_recipe == true
+    end.compact
+    require "pry"; binding.pry
+  end
+
+  def what_can_i_make
+    recipes_can_make
+  end
 
 
 end

@@ -108,7 +108,7 @@ class RecipeTest < Minitest::Test
     pantry.restock("Cucumbers", 120)
     pantry.restock("Raw nuts", 20)
     pantry.restock("Salt", 20)
-    require "pry"; binding.pry
+    # require "pry"; binding.pry
     assert_equal ["Pickles", "Peanuts"], pantry.what_can_i_make
   end
 end
