@@ -36,8 +36,7 @@ class Pantry
   end
 
   def check_if_has_single_ingredient(ingredient, amount)
-    return true if stock[ingredient] >= amount
-    false
+    return true if stock[ingredient] > amount
   end
 
   def check_each_ingredient(recipe)
@@ -53,11 +52,17 @@ class Pantry
       make_recipe = check_each_ingredient(recipe)
       recipe if make_recipe == true
     end.compact
-    require "pry"; binding.pry
   end
 
   def what_can_i_make
-    recipes_can_make
+    recipes_can_make.map do |recipe|
+      require "pry"; binding.pry
+      recipe.name
+    end
+  end
+
+  def how_many_can_i_make
+    recipies_can_make.reduce({}) do |collection, (ingredient, amount)
   end
 
 
