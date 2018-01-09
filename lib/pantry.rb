@@ -35,4 +35,13 @@ class Pantry
     cookbook.push(recipe)
   end
 
+  def check_stock(item)
+    stock.each do |quantity|
+      # require "pry"; binding.pry
+      return stock[item] if stock == item
+    end
+  end # check stock to see if we have that
+
+
+
 end
