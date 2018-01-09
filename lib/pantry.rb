@@ -61,9 +61,8 @@ class Pantry
   end
 
   def compare_what_i_have(recipe)
-    recipe.ingredients.each do |ingredient, amount|
-      quantity = stock[ingredient] / amount
-      quantity
+    recipe.ingredients.map do |ingredient, amount|
+      return stock[ingredient] / amount
     end
   end
 
