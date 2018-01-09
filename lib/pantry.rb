@@ -23,4 +23,12 @@ class Pantry
       end
   end
 
+  def print_shopping_list
+    shopping_list.reduce("") do |list, (ingredient, amount)|
+      list += "* #{ingredient}: #{amount}"
+      require "pry"; binding.pry
+      list
+    end
+  end
+
 end

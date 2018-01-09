@@ -12,7 +12,6 @@ class Recipe
 
   def add_ingredient(ingredient_name, amount)
     ingredients[ingredient_name] = amount
-    require "pry"; binding.pry
   end
 
   def amount_required(ingredient_name)
