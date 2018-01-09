@@ -56,13 +56,22 @@ class Pantry
 
   def what_can_i_make
     recipes_can_make.map do |recipe|
-      require "pry"; binding.pry
       recipe.name
     end
   end
 
+  def compare_what_i_have(recipe)
+    recipe.ingredients.each do |ingredient, amount|
+      quantity = stock[ingredient] / amount
+      quantity
+    end
+  end
+
   def how_many_can_i_make
-    recipies_can_make.reduce({}) do |collection, (ingredient, amount)
+    recipes_can_make.reduce({}) do |collection, recipe|
+      collection[recipe.name] = compare_what_i_have(recipe)
+      collection
+    end
   end
 
 
